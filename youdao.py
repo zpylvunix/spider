@@ -2,6 +2,7 @@ import urllib.request
 import urllib.parse
 import json
 
+
 while True :
     content = input("请输入需要翻译的内容(按下q退出)：")
     if content=='q':
@@ -17,7 +18,11 @@ while True :
     data['action']='FY_BY_CLICKBUTTON'
     data['typoResult']='true'
     data=urllib.parse.urlencode(data).encode('utf-8')
-    response = urllib.request.urlopen(url,data)
+    req = urllib.request.Request(url,data)
+    #伪装
+    req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0')
+
+    response=urllib.request.urlopen(req)
     html = response.read().decode('utf-8')
 
     target = json.loads(html)
