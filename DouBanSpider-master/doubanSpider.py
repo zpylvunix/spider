@@ -26,7 +26,7 @@ def book_spider(book_tag,page_num):
         url='http://www.douban.com/tag/'+urllib.parse.quote(book_tag)+'/book?start='+str(num*15)
         time.sleep(np.random.rand()*5)
         
-        #Last Version
+        
         try:
             req = urllib.request.Request(url)
             req.add_header('User-Agent',hds[num%length])
